@@ -1,4 +1,4 @@
-package test;
+package net.marvk.jcudafractals;
 
 import jcuda.Pointer;
 import jcuda.Sizeof;
@@ -21,7 +21,7 @@ public class MandelTest {
     public static final int BLOCK_SIZE = 512;
     public static final int STAGE_SIZE = 2048 * 64;
 
-    public static final String ptxFile = "B:\\Marvin\\IdeaProjects\\CudaFractals\\src\\kernel\\Mandel";
+    public static final String ptxFile = "B:\\Marvin\\IdeaProjects\\CudaFractals\\src\\net\\marvk\\jcudafractals\\kernel\\Mandel";
 
     public static void main(String[] args) {
         int[] result = new int[SIZE * SIZE];

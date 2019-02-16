@@ -1,6 +1,6 @@
-package controller;
+package net.marvk.jcudafractals.controller;
 
-import fractal.Buddhabrot2;
+import net.marvk.jcudafractals.fractal.Buddhabrot2;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  * Created by Marvin on 25.05.2016.
  */
 public class Controller {
-    public static final int SIZE = 16384;
+    public static final int SIZE = ((int) Math.pow(2, 12));
     public static long NUM_POINTS = 128L * 128L * 128L * 128L;
 
     public Controller() {

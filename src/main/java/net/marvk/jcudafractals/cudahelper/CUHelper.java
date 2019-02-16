@@ -1,4 +1,4 @@
-package cudahelper;
+package net.marvk.jcudafractals.cudahelper;
 
 import jcuda.Pointer;
 import jcuda.Sizeof;
@@ -6,6 +6,8 @@ import jcuda.driver.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 
 import static jcuda.driver.JCudaDriver.*;
@@ -14,17 +16,20 @@ import static jcuda.driver.JCudaDriver.*;
  * Created by Marvin on 25.05.2016.
  */
 public class CUHelper {
-    private static final String kernelFolder = "src/kernel/";
+    private static final String kernelFolder = "kernel/";
 
     private CUHelper() {
         //no instance
     }
 
-    public static CUfunction prepareContext(String fileName, boolean compilePtx) throws IOException {
-        if (compilePtx)
+    public static CUfunction prepareContext(String fileName, boolean compilePtx) throws IOException, URISyntaxException {
+        if (compilePtx) {
             compileKernel(fileName);
+        }
 
-        File ptxFile = new File(kernelFolder + fileName.substring(0, fileName.lastIndexOf(".")) + ".ptx");
+        final String fn = fileName.substring(0, fileName.lastIndexOf(".")) + ".ptx";
+
+        File ptxFile = new File(ClassLoader.getSystemClassLoader().getResource("kernel/" + fn).toURI());
 
         setExceptionsEnabled(true);
         cuInit(0);
@@ -46,9 +51,14 @@ public class CUHelper {
         return function;
     }
 
-    public static void compileKernel(String fileName) throws IOException {
-        File cuFile = new File(kernelFolder + fileName);
-        File ptxFile = new File(kernelFolder + fileName.substring(0, fileName.lastIndexOf(".")) + ".ptx");
+    public static void compileKernel(String fileName) throws IOException, URISyntaxException {
+        final ClassLoader cl = ClassLoader.getSystemClassLoader();
+        final URL resource = cl.getResource("kernel/" + fileName);
+
+        File cuFile = new File(resource.toURI());
+        final String fn = fileName.substring(0, fileName.lastIndexOf(".")) + ".ptx";
+
+        File ptxFile = new File(cl.getResource("kernel/" + fn).toURI());
 
         if (!cuFile.exists())
             throw new IOException(cuFile + " could not be found");

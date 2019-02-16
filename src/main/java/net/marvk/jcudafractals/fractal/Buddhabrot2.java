@@ -1,11 +1,12 @@
-package fractal;
+package net.marvk.jcudafractals.fractal;
 
-import cudahelper.CUHelper;
+import net.marvk.jcudafractals.cudahelper.CUHelper;
 import jcuda.Pointer;
 import jcuda.driver.CUdeviceptr;
 import jcuda.driver.CUfunction;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.SplittableRandom;
 
 import static jcuda.driver.JCudaDriver.*;
@@ -30,7 +31,7 @@ public class Buddhabrot2 {
 
         try {
             function = CUHelper.prepareContext("Buddha3.cu", true);
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
             System.exit(1);
         }

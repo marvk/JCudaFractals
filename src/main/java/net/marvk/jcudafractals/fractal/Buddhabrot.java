@@ -1,16 +1,16 @@
-package fractal;
+package net.marvk.jcudafractals.fractal;
 
-import cudahelper.CUHelper;
 import jcuda.Pointer;
 import jcuda.driver.CUdeviceptr;
 import jcuda.driver.CUfunction;
+import net.marvk.jcudafractals.cudahelper.CUHelper;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -42,7 +42,7 @@ public class Buddhabrot {
 
         try {
             function = CUHelper.prepareContext("Buddha.cu", true);
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
             System.exit(1);
             return;
@@ -101,7 +101,6 @@ public class Buddhabrot {
             );
 
             cuCtxSynchronize();
-
 
             CUHelper.copyArrayFromGPU(outX, deviceOutputX);
             CUHelper.copyArrayFromGPU(outY, deviceOutputY);

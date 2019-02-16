@@ -1,4 +1,4 @@
-package fractal;
+package net.marvk.jcudafractals.fractal;
 
 /**
  * Created by Marvin on 25.05.2016.
