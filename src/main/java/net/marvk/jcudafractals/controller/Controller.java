@@ -15,10 +15,10 @@ import java.util.stream.IntStream;
  */
 public final class Controller {
     private static final int SIZE = ((int) Math.pow(2, 12));
-    private static final long NUM_POINTS = 128L * 128L * 128L * 128L;
+    private static final long NUM_POINTS = 128L * 128L * 128L * 128L * 2L;
 
     public Controller() {
-        final int[] iterations = {10000, 2000, 400};
+        final int[] iterations = {10000*5, 2000*3, 400*2};
 
         final long startTime = System.currentTimeMillis();
         final int[][] result = IntStream.range(0, 3)

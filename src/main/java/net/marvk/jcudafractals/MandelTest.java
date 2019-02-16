@@ -21,14 +21,14 @@ public final class MandelTest {
     private static final int BLOCK_SIZE = 512;
     private static final int STAGE_SIZE = 2048 * 64;
 
-    private static final String PTX_FILE = "B:\\Marvin\\IdeaProjects\\CudaFractals\\src\\net\\marvk\\jcudafractals\\kernel\\Mandel";
+    private static final String PTX_FILE = "B:\\Marvin\\IdeaProjects\\JCudaFractals\\src\\main\\resources\\kernel\\Mandel";
 
     private MandelTest() {
         throw new AssertionError("No instances of utility class " + MandelTest.class);
     }
 
     public static void main(String[] args) {
-        CUfunction function = prepareContext(PTX_FILE);
+        final CUfunction function = prepareContext(PTX_FILE);
 
         System.out.println("START GPU");
 
@@ -89,7 +89,7 @@ public final class MandelTest {
         }
 
         System.out.println("END GPU");
-        System.out.println("Time elapsed: " + ((double)(System.currentTimeMillis()-startTime) / 1000.0) + "s");
+        System.out.println("Time elapsed: " + ((double) (System.currentTimeMillis() - startTime) / 1000.0) + "s");
 
         BufferedImage image = new BufferedImage(SIZE, SIZE, BufferedImage.TYPE_INT_RGB);
 
@@ -120,6 +120,7 @@ public final class MandelTest {
         cuCtxCreate(context, 0, device);
 
         CUmodule module = new CUmodule();
+
         cuModuleLoad(module, ptxFileName + ".ptx");
 
         CUfunction function = new CUfunction();

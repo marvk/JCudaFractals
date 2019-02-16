@@ -15,12 +15,12 @@ import static jcuda.driver.JCudaDriver.*;
  * Created by Marvin on 25.05.2016.
  */
 public class Buddhabrot2 {
-    public static int SIZE;// = 4096;
-    public static long NUM_POINTS;// = 128L * 128L * 128L * 128L * 16L;
-    public static int ITERATIONS;// = 5000;
+    private static int SIZE;// = 4096;
+    private static long NUM_POINTS;// = 128L * 128L * 128L * 128L * 16L;
+    private static int ITERATIONS;// = 5000;
 
-    public static final int BLOCK_SIZE = 512;
-    public static final int STAGE_SIZE = 2048 * 8192;
+    private static final int BLOCK_SIZE = 512;
+    private static final int STAGE_SIZE = 2048 * 8192;
 
     public static int[] buddhabrot(int iterations, long numPoints, int size) {
         SIZE = size;
