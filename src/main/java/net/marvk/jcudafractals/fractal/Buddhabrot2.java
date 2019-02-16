@@ -51,8 +51,8 @@ public class Buddhabrot2 {
             System.out.println(((double) i / (double) NUM_POINTS) * 100.0 + "%");
 
 //            for (int j = 0; j < STAGE_SIZE; j++) {
-//                float cR = random.nextFloat() * 4f - 2f;
-//                float cI = random.nextFloat() * 4f - 2f;
+//                float cR = RANDOM.nextFloat() * 4f - 2f;
+//                float cI = RANDOM.nextFloat() * 4f - 2f;
 //
 //                inR[j] = cR;
 //                inI[j] = cI;

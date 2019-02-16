@@ -16,21 +16,25 @@ import static jcuda.driver.JCudaDriver.*;
 /**
  * Created by Marvin on 25.05.2016.
  */
-public class MandelTest {
-    public static final int SIZE = 16384;
-    public static final int BLOCK_SIZE = 512;
-    public static final int STAGE_SIZE = 2048 * 64;
+public final class MandelTest {
+    private static final int SIZE = 16384;
+    private static final int BLOCK_SIZE = 512;
+    private static final int STAGE_SIZE = 2048 * 64;
 
-    public static final String ptxFile = "B:\\Marvin\\IdeaProjects\\CudaFractals\\src\\net\\marvk\\jcudafractals\\kernel\\Mandel";
+    private static final String PTX_FILE = "B:\\Marvin\\IdeaProjects\\CudaFractals\\src\\net\\marvk\\jcudafractals\\kernel\\Mandel";
+
+    private MandelTest() {
+        throw new AssertionError("No instances of utility class " + MandelTest.class);
+    }
 
     public static void main(String[] args) {
-        int[] result = new int[SIZE * SIZE];
-
-        CUfunction function = prepareContext(ptxFile);
+        CUfunction function = prepareContext(PTX_FILE);
 
         System.out.println("START GPU");
 
         long startTime = System.currentTimeMillis();
+
+        int[] result = new int[SIZE * SIZE];
 
         for (int i = 0; i < SIZE * SIZE; i += STAGE_SIZE) {
             System.out.println("Stage " + i);
